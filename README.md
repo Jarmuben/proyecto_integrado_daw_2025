@@ -52,7 +52,7 @@ Las principales tablas del sistema almacenan información clave para garantizar 
 
 - `farmacias`  Datos de farmacias disponibles (nombre, dirección, teléfono, horario).  
 - `medicos`  Información sobre médicos y especialistas (nombre, especialidad, ubicación, contacto).  
-- `citas_culturales` Eventos culturales y actividades disponibles (evento, fecha, ubicación, descripción).  
+- `eventos_culturales` Información sobre eventos culturales y actividades disponibles (nombre del evento, fecha, ubicación, descripción).  
 - `transporte`  Opciones de transporte público (tipo, ruta, horarios, contacto).  
 - `usuarios_admin`  Gestión de administradores y acceso seguro al sistema.  
 
