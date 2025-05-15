@@ -1,0 +1,51 @@
+ <!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benalmadena65+</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="test.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <!-- Imagen de fondo accesible con aria-label -->
+        <div class="background-image" role="img" aria-label="Imagen de fondo del castillo Bil Bil"></div>
+        <div class="content">
+            <h1>Benalmadena65+</h1>
+             <!-- Botones de navegación para diferentes secciones -->
+            <div class="buttons">
+                <div class="button farmacias" id="farmacias" role="button" tabindex="0"><span>FARMACIAS</span></div>
+                <div class="button medicos" id="medicos" role="button" tabindex="0"><span>MÉDICOS</span></div>
+                <div class="button eventos_culturales" id="eventos_culturales" role="button" tabindex="0"><span>EVENTOS CULTURALES</span></div>
+                <div class="button transportes" id="transportes" role="button" tabindex="0"><span>TRANSPORTES</span></div>
+            </div>
+              <!-- Área donde se mostrará la información -->
+            <div id="info"></div>
+        </div>
+    </div>
+ <!-- Botón para mostrar el modal de login de administrador -->
+    <button id="openLoginBtn" class="admin-login-button">Admin</button>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">×</span><!-- Botón para cerrar el modal -->
+            <h2>Admin Login</h2>
+            <form id="loginForm">
+                <!-- Campos del formulario de inicio de sesión -->
+                <p><label>Usuario: <input type="text" name="usuario" required></label></p>
+                <p><label>Contraseña: <input type="password" name="contrasena" required></label></p>
+                <button type="submit">Entrar</button>
+                <p id="loginError" class="error-message"></p><!-- Mensaje de error en caso de fallo en el login -->
+            </form>
+        </div>
+    </div>
+<!-- Archivos JavaScript externos -->
+    <script src="script.js"></script>
+    <script src="test.js"></script>
+</body>
+
+</html>
