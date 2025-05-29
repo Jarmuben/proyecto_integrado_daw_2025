@@ -18,8 +18,8 @@ El objetivo de este proyecto es:
 - Frontend: HTML, CSS y JavaScript (sin frameworks externos).
 - Backend: PHP.
 - Base de datos Mysql (phpMyAdmin).
-- Entorno de desarrollo: XAMPP,Visual Studio Code, Live Server..
-- Control de versiones: Git/GitHub.
+- Entorno de desarrollo: XAMPP,Visual Studio Code, Live Server.
+- Control de versiones: GitHub.
 
 ## 4. Características Principales
 - Directorio de Servicios: Información sobre médicos (podólogos, etc.), farmacias, transporte público y eventos culturales.  
@@ -33,17 +33,21 @@ El objetivo de este proyecto es:
 La organización de archivos sigue una estructura clara para mantener la modularidad y facilitar el mantenimiento:
 
 /proyecto_integrado_daw_2025
-│──/css # Estilos de la interfaz 
-│── /js # Funcionalidad y lógica de interactividad 
-│── /img # Recursos gráficos 
+│── css # Estilos de la interfaz 
+│── js # Funcionalidad y lógica de interactividad 
+│── img # Recursos gráficos 
 │── index.html # Página principal de la aplicación 
-│── styles.css # Archivo de estilos 
-│── script.js # Código JavaScript 
-│── test.js # Pruebas automatizadas 
+│── styles.css # Archivo de estilos CSS
+│── script.js # Código JavaScript para la interactividad
+│── test.js # Pruebas automatizadas del sistema
 │── db_connection.php # Configuración de conexión a la base de datos 
-│── get_data.php # API para obtener información 
-│── auth.php # Autenticación y gestión de sesión 
-│── panel.php # Panel de administración
+│── get_data.php # API para obtener información desde la base de datos
+│── auth.php # Autenticación y gestión de usuarios
+│── panel.php # Panel de administración para gestionar el sistema
+├── admin.php # Administración de usuarios y permisos
+├── benalmadena65.sql   # Archivo de base de datos con la estructura y datos iniciales
+├── castillo_bilbil.webp # Imagen del castillo Bil Bil utilizada en el proyecto
+├── test_connection.php # Pruebas de conexión a la base de datos
 
 ## 6. Base de Datos (MySQL + phpMyAdmin)  
 
@@ -53,7 +57,7 @@ Las principales tablas del sistema almacenan información clave para garantizar 
 - `farmacias`  Datos de farmacias disponibles (nombre, dirección, teléfono, horario).  
 - `medicos`  Información sobre médicos y especialistas (nombre, especialidad, ubicación, contacto).  
 - `eventos_culturales` Información sobre eventos culturales y actividades disponibles (nombre del evento, fecha, ubicación, descripción).  
-- `transporte`  Opciones de transporte público (tipo, ruta, horarios, contacto).  
+- `transporte`  Opciones de transporte público (tipo, ruta, horarios, etc.).  
 - `usuarios_admin`  Gestión de administradores y acceso seguro al sistema.  
 
 La conexión y gestión de la base de datos se realiza a través de `db_connection.php`, mientras que `get_data.php` facilita la recuperación de información en formato JSON para su uso en el frontend.  
@@ -61,14 +65,12 @@ La conexión y gestión de la base de datos se realiza a través de `db_connecti
 ## 7. Despliegue de la Aplicación
    
 ### 1. Requisitos Previos
-Antes de desplegar la aplicación, asegúrate de contar con:
+Antes de desplegar la aplicación, asegúrese de contar con:
 - XAMPP instalado y en funcionamiento (Apache y MySQL activos).
 - PHP compatible con el código del proyecto.
 - Base de datos `benalmadena65` correctamente configurada.
 - Navegador web para probar la aplicación.
 - Editor de texto (Visual Studio Code, Sublime Text o similar) para realizar ajustes.
-
----
 
 ### 2. Instalación y Configuración
 #### Paso 1: Configurar el entorno
@@ -78,7 +80,7 @@ Antes de desplegar la aplicación, asegúrate de contar con:
 #### Paso 2: Configurar la base de datos
 1. Abre `phpMyAdmin` desde `http://localhost/phpmyadmin`.
 2. Crea una base de datos con el nombre `benalmadena65`.
-3. Importa el archivo `benalmadena65.sql` para cargar las tablas necesarias (`administradores`, `farmacias`, `medicos`, `citas`, `transportes`).
+3. Importa el archivo `benalmadena65.sql` para cargar las tablas necesarias (`administradores`, `farmacias`, `medicos`, `eventos_culturales`, `transportes`).
 
 #### Paso 3: Configurar la conexión en los archivos PHP
 Verifica que los archivos PHP que interactúan con la base de datos (`auth.php`, `get_data.php`, `db_connection.php`, etc.) tengan la conexión correcta con MySQL:
@@ -89,14 +91,33 @@ if ($conexion->connect_error) {
     die("Error en la conexión: " . $conexion->connect_error);
 }
 
-### Paso 4: Ubicar los archivos en el servidor local**
-1. Copia la carpeta del proyecto en:
+### Paso 4: Ubicar los archivos en el servidor local
+#### 1. Copia la carpeta del proyecto en:
 C:/xampp/htdocs/Proyectos/proyecto_benalmadena65+/
 
-2. Verifica que los archivos principales estén organizados correctamente:
-- Frontend: `index.html`, `styles.css`, `script.js`
-- Backend: `auth.php`, `get_data.php`, `db_connection.php`
-- Base de datos: `benalmadena65.sql`
+#### 2. Verifica que los archivos principales estén organizados correctamente:
+- Frontend:
+  - `index.html`  Página principal de la aplicación  
+  - `styles.css`  Archivo de estilos CSS  
+  - `script.js`  Código JavaScript para la interactividad  
+
+- Backend:  
+  - `auth.php`  Autenticación y gestión de sesión  
+  - `get_data.php`  API para obtener información desde la base de datos  
+  - `db_connection.php`  Configuración de conexión a la base de datos  
+  - `panel.php`  Panel administrativo para gestionar el sistema  
+  - `admin.php`  Administración de usuarios y permisos  
+
+- Base de datos: 
+  - `benalmadena65.sql`  Archivo SQL con la estructura y datos iniciales  
+
+- Recursos gráficos:
+  - `img/castillo_bilbil.webp`  Imagen utilizada en el proyecto  
+
+- Pruebas y configuración:  
+  - `test.js`  Pruebas automatizadas del sistema  
+  - `test_connection.php`  Prueba de conexión a la base de datos  
+
 
 ### Paso 5: Ejecutar la aplicación
 Accede al proyecto desde el navegador en:
