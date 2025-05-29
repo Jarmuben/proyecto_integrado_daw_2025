@@ -57,3 +57,69 @@ Las principales tablas del sistema almacenan información clave para garantizar 
 - `usuarios_admin`  Gestión de administradores y acceso seguro al sistema.  
 
 La conexión y gestión de la base de datos se realiza a través de `db_connection.php`, mientras que `get_data.php` facilita la recuperación de información en formato JSON para su uso en el frontend.  
+
+## 7. Despliegue de la Aplicación
+   
+### 1. Requisitos Previos
+Antes de desplegar la aplicación, asegúrate de contar con:
+- XAMPP instalado y en funcionamiento (Apache y MySQL activos).
+- PHP compatible con el código del proyecto.
+- Base de datos `benalmadena65` correctamente configurada.
+- Navegador web para probar la aplicación.
+- Editor de texto (Visual Studio Code, Sublime Text o similar) para realizar ajustes.
+
+---
+
+### 2. Instalación y Configuración
+#### Paso 1: Configurar el entorno
+1. Iniciar XAMPP y activar Apache y MySQL desde el panel de control.
+2. Verificar el funcionamiento accediendo a `http://localhost/`.
+
+#### Paso 2: Configurar la base de datos
+1. Abre `phpMyAdmin` desde `http://localhost/phpmyadmin`.
+2. Crea una base de datos con el nombre `benalmadena65`.
+3. Importa el archivo `benalmadena65.sql` para cargar las tablas necesarias (`administradores`, `farmacias`, `medicos`, `citas`, `transportes`).
+
+#### Paso 3: Configurar la conexión en los archivos PHP
+Verifica que los archivos PHP que interactúan con la base de datos (`auth.php`, `get_data.php`, `db_connection.php`, etc.) tengan la conexión correcta con MySQL:
+
+$conexion = new mysqli("localhost", "root", "", "benalmadena65");
+
+if ($conexion->connect_error) {
+    die("Error en la conexión: " . $conexion->connect_error);
+}
+
+### Paso 4: Ubicar los archivos en el servidor local**
+1. Copia la carpeta del proyecto en:
+C:/xampp/htdocs/Proyectos/proyecto_benalmadena65+/
+
+2. Verifica que los archivos principales estén organizados correctamente:
+- Frontend: `index.html`, `styles.css`, `script.js`
+- Backend: `auth.php`, `get_data.php`, `db_connection.php`
+- Base de datos: `benalmadena65.sql`
+
+### Paso 5: Ejecutar la aplicación
+Accede al proyecto desde el navegador en:
+http://localhost/Proyectos/proyecto_benalmadena65+/
+Desde aquí, puedes probar las funciones de la aplicación.
+
+---
+GUIA ADICIONAL
+### Pruebas del sistema
+Para asegurar el correcto funcionamiento de la aplicación, realiza las siguientes pruebas:
+- Autenticación: Inicia sesión en la plataforma y verifica que la sesión se inicie correctamente.
+- Carga de datos: Interactúa con los botones de la interfaz y confirma que `get_data.php` devuelve los datos esperados.
+- Panel administrativo: Asegúrate de que `panel.php` carga los datos correctamente en la interfaz.
+- Cierre de sesión: Verifica que `auth.php` y `logout.php` cierren la sesión sin errores.
+
+---
+
+### Solución de problemas
+Si la aplicación no funciona correctamente, revisa estos puntos:
+- Apache o MySQL no están activos → Inicia ambos desde XAMPP.
+- Error de conexión a la base de datos** → Verifica que `benalmadena65` existe en `phpMyAdmin`.
+- Página en blanco o errores en PHP → Activa `display_errors` en `php.ini` o usa:
+ 
+  error_reporting(E_ALL);
+  ini_set('display_errors', 1);
+Los datos no se cargan → Comprueba que get_data.php está devolviendo JSON correctamente y que script.js lo está procesando bien.
